@@ -25,7 +25,7 @@ function FeatureBlock({
   );
 
   return (
-    <div className={`grid md:grid-cols-2 gap-10 items-center mb-16 ${imageLeft ? "" : ""}`}>
+    <div className="grid md:grid-cols-2 gap-10 items-center mb-16">
       {imageLeft ? (
         <>
           {imgCol}
@@ -97,6 +97,18 @@ function AutomationVisual() {
   );
 }
 
+function PainelVisual() {
+  return (
+    <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", minHeight: 220 }}>
+      <img
+        src="/painel-placeholder.png"
+        alt="Painel organizado"
+        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: 16 }}
+      />
+    </div>
+  );
+}
+
 export default function FeaturesSection() {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
@@ -126,15 +138,15 @@ export default function FeaturesSection() {
           imagePlaceholder={<AutomationVisual />}
         />
 
-        <div className="mb-16">
-          <div className="text-white mb-4">
-            <p className="text-xl font-black mb-3">Tenha controle total do seu negócio em um único lugar.</p>
-            <p className="text-white/90 leading-relaxed">
-              Acompanhe cadastros, movimentações e informações em tempo real, sem perder tempo com processos manuais.
-              Tudo funciona de forma simples e integrada direto no WhatsApp, para você focar no que realmente importa: crescer.
-            </p>
-          </div>
-        </div>
+        <FeatureBlock
+          title="Painel organizado."
+          description={[
+            "Tenha controle total do seu negócio em um único lugar.",
+            "Acompanhe cadastros, movimentações e informações em tempo real, sem perder tempo com processos manuais.",
+            "Tudo funciona de forma simples e integrada direto no WhatsApp, para você focar no que realmente importa: crescer.",
+          ]}
+          imagePlaceholder={<PainelVisual />}
+        />
 
         <div className="text-center">
           <button
