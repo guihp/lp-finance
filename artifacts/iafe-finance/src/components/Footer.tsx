@@ -1,5 +1,3 @@
-import IafeLogo from "@/components/IafeLogo";
-
 export default function Footer() {
   return (
     <footer className="bg-white border-t border-gray-100 py-12 px-4">
@@ -25,7 +23,7 @@ export default function Footer() {
           </div>
 
           <div className="flex justify-center md:justify-end">
-            <IafeLogo size="lg" />
+            <img src="/logo-iafe.png" alt="IAFÉ Finance" className="h-12 w-auto" />
           </div>
         </div>
 
