@@ -1,0 +1,8 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "E-37rMMmWv35W_IF347eV"
+uri = "file://artifacts/iafe-finance/public/assistant.png"
+type = "image"
+title = "3D AI assistant holding phone"
