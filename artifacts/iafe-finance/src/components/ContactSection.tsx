@@ -16,10 +16,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section
-      className="py-20 px-4"
-      style={{ background: "linear-gradient(135deg, #7B2FBE 0%, #9333EA 50%, #6D28D9 100%)" }}
-    >
+    <section className="bg-white py-20 px-4">
       <div className="max-w-4xl mx-auto">
         <div
           className="rounded-3xl overflow-hidden shadow-2xl"
@@ -28,7 +25,7 @@ export default function ContactSection() {
           <div className="grid md:grid-cols-2 gap-0">
             <div className="flex items-end justify-center px-6 pt-8 pb-0 relative" style={{ minHeight: 320 }}>
               <img
-                src="/feh-agente.png"
+                src="/feh-agente2.png"
                 alt="FÊH assistente"
                 style={{
                   width: "100%",
