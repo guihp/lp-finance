@@ -16,32 +16,28 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="bg-white py-20 px-4">
+    <section
+      className="py-20 px-4"
+      style={{ background: "linear-gradient(135deg, #7B2FBE 0%, #9333EA 50%, #6D28D9 100%)" }}
+    >
       <div className="max-w-4xl mx-auto">
         <div
           className="rounded-3xl overflow-hidden shadow-2xl"
           style={{ background: "linear-gradient(135deg, #7B2FBE 0%, #9333EA 50%, #6D28D9 100%)" }}
         >
           <div className="grid md:grid-cols-2 gap-0">
-            <div className="flex items-end justify-center px-8 pt-8 pb-0 md:pb-0 relative">
-              <div style={{
-                position: "absolute",
-                inset: 0,
-                background: "radial-gradient(ellipse at center bottom, rgba(255,255,255,0.18) 0%, transparent 70%)",
-                pointerEvents: "none",
-              }} />
+            <div className="flex items-end justify-center px-6 pt-8 pb-0 relative" style={{ minHeight: 320 }}>
               <img
                 src="/feh-agente.png"
                 alt="FÊH assistente"
                 style={{
                   width: "100%",
-                  maxWidth: 280,
+                  maxWidth: 300,
                   objectFit: "contain",
                   objectPosition: "bottom",
-                  filter: "drop-shadow(0 8px 32px rgba(147,51,234,0.5))",
+                  filter: "drop-shadow(0 8px 32px rgba(109,40,217,0.6))",
                   animation: "float 4s ease-in-out infinite",
-                  position: "relative",
-                  zIndex: 1,
+                  display: "block",
                 }}
               />
             </div>
