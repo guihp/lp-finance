@@ -23,19 +23,22 @@ export default function ContactSection() {
           style={{ background: "linear-gradient(135deg, #7B2FBE 0%, #9333EA 50%, #6D28D9 100%)" }}
         >
           <div className="grid md:grid-cols-2 gap-0">
-            <div className="flex items-end justify-center px-6 pb-0 relative" style={{ minHeight: 340, paddingTop: 32 }}>
+            <div
+              className="flex items-end justify-center px-4"
+              style={{ paddingTop: 20, paddingBottom: 0, alignSelf: "stretch" }}
+            >
               <img
                 src="/feh-agente2.png"
                 alt="FÊH assistente"
                 style={{
-                  width: "100%",
-                  maxWidth: 320,
+                  display: "block",
+                  height: "calc(100% - 20px)",
+                  width: "auto",
+                  maxWidth: "100%",
                   objectFit: "contain",
-                  objectPosition: "bottom",
+                  objectPosition: "bottom center",
                   filter: "drop-shadow(0 8px 32px rgba(109,40,217,0.6))",
                   animation: "float 4s ease-in-out infinite",
-                  display: "block",
-                  marginBottom: -2,
                 }}
               />
             </div>
