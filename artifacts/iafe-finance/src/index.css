@@ -270,6 +270,7 @@
 }
 
 @keyframes float-contact {
-  0%, 100% { transform: translateX(-50%) translateY(0px); }
-  50% { transform: translateX(-50%) translateY(-12px); }
+  0%   { transform: translateX(-50%) translateY(0px); }
+  50%  { transform: translateX(-50%) translateY(-14px); }
+  100% { transform: translateX(-50%) translateY(0px); }
 }

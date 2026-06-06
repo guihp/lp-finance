@@ -58,13 +58,13 @@ export default function ContactSection() {
                 alt="FÊH assistente"
                 style={{
                   position: "absolute",
-                  bottom: 20,
+                  bottom: 24,
                   left: "50%",
-                  height: "calc(100% - 32px)",
+                  height: "calc(100% - 56px)",
                   width: "auto",
-                  maxWidth: "100%",
-                  filter: "drop-shadow(0 8px 32px rgba(109,40,217,0.6))",
-                  animation: "float-contact 4s ease-in-out infinite",
+                  maxWidth: "95%",
+                  filter: "drop-shadow(0 12px 40px rgba(109,40,217,0.5))",
+                  animation: "float-contact 3.5s ease-in-out infinite",
                 }}
               />
             </div>
