@@ -61,28 +61,19 @@ function DashboardVisual() {
 
 function AutomationVisual() {
   return (
-    <div style={{ background: "rgba(255,255,255,0.1)", borderRadius: 12, padding: 16, minHeight: 180, border: "1px solid rgba(255,255,255,0.2)" }}>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-        <div style={{ background: "rgba(255,255,255,0.15)", borderRadius: 8, padding: "10px 12px" }}>
-          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.7)" }}>Transações</div>
-          <div style={{ fontSize: 20, fontWeight: 800, color: "white" }}>247</div>
-          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.6)" }}>este mês</div>
-        </div>
-        <div style={{ background: "rgba(255,255,255,0.15)", borderRadius: 8, padding: "10px 12px" }}>
-          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.7)" }}>Categorias</div>
-          <div style={{ fontSize: 20, fontWeight: 800, color: "white" }}>12</div>
-          <div style={{ fontSize: 9, color: "rgba(255,255,255,0.6)" }}>detectadas</div>
-        </div>
-        <div style={{ background: "rgba(255,255,255,0.15)", borderRadius: 8, padding: "10px 12px", gridColumn: "span 2" }}>
-          <div style={{ fontSize: 10, color: "rgba(255,255,255,0.7)", marginBottom: 6 }}>Automação ativa</div>
-          <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-            {["Categorização", "Alertas", "Relatórios", "Dashboard"].map(t => (
-              <div key={t} style={{ background: "rgba(255,255,255,0.2)", borderRadius: 20, padding: "3px 10px", fontSize: 9, color: "white" }}>{t}</div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+    <video
+      src="/video-automacao-total.mov"
+      autoPlay
+      loop
+      muted
+      playsInline
+      style={{
+        width: "100%",
+        borderRadius: 12,
+        display: "block",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+      }}
+    />
   );
 }
 
