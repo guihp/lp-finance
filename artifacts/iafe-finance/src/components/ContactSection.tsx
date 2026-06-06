@@ -46,18 +46,25 @@ export default function ContactSection() {
         >
           <div className="grid md:grid-cols-2 gap-0">
             <div
-              className="flex items-end justify-center px-4"
-              style={{ paddingTop: 24, paddingBottom: 20, alignSelf: "stretch" }}
+              style={{
+                position: "relative",
+                alignSelf: "stretch",
+                overflow: "hidden",
+                minWidth: 0,
+              }}
             >
               <img
                 src="/feh-agente2.png"
                 alt="FÊH assistente"
                 style={{
-                  display: "block",
-                  width: "min(260px, 90%)",
-                  height: "auto",
+                  position: "absolute",
+                  bottom: 20,
+                  left: "50%",
+                  height: "calc(100% - 32px)",
+                  width: "auto",
+                  maxWidth: "100%",
                   filter: "drop-shadow(0 8px 32px rgba(109,40,217,0.6))",
-                  animation: "float 4s ease-in-out infinite",
+                  animation: "float-contact 4s ease-in-out infinite",
                 }}
               />
             </div>
