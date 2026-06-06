@@ -43,30 +43,19 @@ function FeatureBlock({
 
 function DashboardVisual() {
   return (
-    <div style={{ background: "white", borderRadius: 12, padding: 16, minHeight: 180 }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-        <div>
-          <div style={{ fontSize: 11, color: "#6b7280" }}>Saldo total</div>
-          <div style={{ fontSize: 22, fontWeight: 800, color: "#7B2FBE" }}>R$ 3.865,15</div>
-        </div>
-        <div style={{ fontSize: 11, color: "#6b7280", textAlign: "right" }}>
-          <div>Despesas</div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: "#ef4444" }}>R$ 224,02</div>
-        </div>
-      </div>
-      <div style={{ marginBottom: 8 }}>
-        <div style={{ fontSize: 10, color: "#6b7280", marginBottom: 6 }}>Gastos por Categoria</div>
-        {[["Alimentação", 70, "#7B2FBE"], ["Supermercado", 50, "#9333EA"], ["Despesas", 35, "#6D28D9"], ["Cartão", 25, "#A855F7"]].map(([label, w, color]) => (
-          <div key={label as string} style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
-            <div style={{ width: 60, fontSize: 9, color: "#6b7280" }}>{label as string}</div>
-            <div style={{ flex: 1, height: 6, background: "#f3f4f6", borderRadius: 3 }}>
-              <div style={{ width: `${w}%`, height: "100%", background: color as string, borderRadius: 3 }} />
-            </div>
-            <div style={{ width: 35, fontSize: 9, color: "#6b7280", textAlign: "right" }}>{w}%</div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <video
+      src="/video-visual-intuitivo.mp4"
+      autoPlay
+      loop
+      muted
+      playsInline
+      style={{
+        width: "100%",
+        borderRadius: 12,
+        display: "block",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+      }}
+    />
   );
 }
 
