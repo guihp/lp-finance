@@ -79,13 +79,19 @@ function AutomationVisual() {
 
 function PainelVisual() {
   return (
-    <div style={{ position: "relative", borderRadius: 16, overflow: "hidden", minHeight: 220 }}>
-      <img
-        src="/painel-placeholder.png"
-        alt="Painel organizado"
-        style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", borderRadius: 16 }}
-      />
-    </div>
+    <video
+      src="/video-painel-organizado.mov"
+      autoPlay
+      loop
+      muted
+      playsInline
+      style={{
+        width: "100%",
+        borderRadius: 12,
+        display: "block",
+        boxShadow: "0 8px 32px rgba(0,0,0,0.25)",
+      }}
+    />
   );
 }
 
