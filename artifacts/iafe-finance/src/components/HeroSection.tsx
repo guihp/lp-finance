@@ -81,23 +81,22 @@ function ChatBubble({ from, text, time }: { from: "user" | "bot"; text: string; 
   );
 }
 
-export default function HeroSection() {
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+const AUTH_URL = "https://financas.iafeoficial.com/auth";
 
+export default function HeroSection() {
   return (
     <section id="hero" className="pt-24 pb-12 bg-white text-center px-4">
       <div className="max-w-5xl mx-auto">
         <div className="mb-8">
-          <button
-            onClick={() => scrollTo("planos")}
-            className="bg-purple-700 hover:bg-purple-800 text-white font-semibold px-8 py-3.5 rounded-lg text-base transition-colors"
+          <a
+            href={AUTH_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-purple-700 hover:bg-purple-800 text-white font-semibold px-8 py-3.5 rounded-lg text-base transition-colors inline-block"
             data-testid="hero-cta-top"
           >
             Começar agora
-          </button>
+          </a>
         </div>
 
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 leading-tight">
@@ -154,13 +153,15 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <button
-          onClick={() => scrollTo("planos")}
-          className="bg-purple-700 hover:bg-purple-800 text-white font-semibold px-12 py-4 rounded-lg text-lg transition-colors"
+        <a
+          href={AUTH_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-purple-700 hover:bg-purple-800 text-white font-semibold px-12 py-4 rounded-lg text-lg transition-colors inline-block"
           data-testid="hero-cta-bottom"
         >
           Começar agora
-        </button>
+        </a>
       </div>
     </section>
   );

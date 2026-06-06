@@ -48,12 +48,15 @@ export default function PlansSection() {
               ))}
             </div>
 
-            <button
-              className="w-full bg-white text-purple-700 font-bold py-4 rounded-xl text-base hover:bg-gray-100 transition-colors"
+            <a
+              href="https://financas.iafeoficial.com/auth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-white text-purple-700 font-bold py-4 rounded-xl text-base hover:bg-gray-100 transition-colors block text-center"
               data-testid="plan-cta"
             >
               Garantir agora
-            </button>
+            </a>
           </div>
         </div>
       </div>

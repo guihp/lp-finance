@@ -20,13 +20,15 @@ export default function ControlSection() {
           <p className="text-white font-bold text-base leading-relaxed mb-8">
             Sem esforço. Sem complicação. Sem esquecer nada.
           </p>
-          <button
-            onClick={() => scrollTo("planos")}
-            className="border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white hover:text-purple-700 transition-colors"
+          <a
+            href="https://wa.me/5519991679072?text=Quero%20Conhecer%20a%20IAFE%20Finance"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-2 border-white text-white font-semibold px-8 py-3 rounded-lg hover:bg-white hover:text-purple-700 transition-colors inline-block"
             data-testid="control-cta"
           >
             Fale com a Fêh
-          </button>
+          </a>
         </div>
 
         <div className="relative rounded-2xl overflow-hidden shadow-2xl">

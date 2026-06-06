@@ -5,6 +5,8 @@ interface NavbarProps {
   setMobileMenuOpen: (open: boolean) => void;
 }
 
+const AUTH_URL = "https://financas.iafeoficial.com/auth";
+
 export default function Navbar({ mobileMenuOpen, setMobileMenuOpen }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
 
@@ -56,13 +58,15 @@ export default function Navbar({ mobileMenuOpen, setMobileMenuOpen }: NavbarProp
           </div>
 
           <div className="hidden md:block">
-            <button
-              onClick={() => scrollTo("planos")}
-              className="bg-purple-700 hover:bg-purple-800 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors"
+            <a
+              href={AUTH_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-purple-700 hover:bg-purple-800 text-white font-semibold px-5 py-2.5 rounded-lg text-sm transition-colors inline-block"
               data-testid="nav-cta"
             >
               Começar agora
-            </button>
+            </a>
           </div>
 
           <button
@@ -85,12 +89,14 @@ export default function Navbar({ mobileMenuOpen, setMobileMenuOpen }: NavbarProp
             <button onClick={() => scrollTo("como-funciona")} className="text-gray-700 font-medium text-sm text-left">Como funciona</button>
             <button onClick={() => scrollTo("planos")} className="text-gray-700 font-medium text-sm text-left">Planos</button>
             <button onClick={() => scrollTo("perguntas")} className="text-gray-700 font-medium text-sm text-left">Perguntas</button>
-            <button
-              onClick={() => scrollTo("planos")}
-              className="bg-purple-700 text-white font-semibold px-5 py-2.5 rounded-lg text-sm w-full"
+            <a
+              href={AUTH_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-purple-700 text-white font-semibold px-5 py-2.5 rounded-lg text-sm w-full text-center"
             >
               Começar agora
-            </button>
+            </a>
           </div>
         )}
       </div>

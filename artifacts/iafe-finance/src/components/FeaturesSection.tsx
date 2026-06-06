@@ -135,13 +135,15 @@ export default function FeaturesSection() {
         />
 
         <div className="text-center">
-          <button
-            onClick={() => scrollTo("planos")}
-            className="bg-white text-purple-700 font-bold px-10 py-4 rounded-lg text-lg hover:bg-gray-100 transition-colors"
+          <a
+            href="https://financas.iafeoficial.com/auth"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-white text-purple-700 font-bold px-10 py-4 rounded-lg text-lg hover:bg-gray-100 transition-colors inline-block"
             data-testid="features-cta"
           >
             Começar agora
-          </button>
+          </a>
         </div>
       </div>
     </section>
