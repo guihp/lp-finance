@@ -1,7 +1,12 @@
 # IAFÉ Finance — landing page (Coolify / Docker)
-FROM node:24-alpine AS build
+# Debian slim (glibc): o monorepo exclui binários musl do rollup/lightningcss no pnpm-workspace.
+FROM node:24-bookworm-slim AS build
 
-RUN corepack enable && corepack prepare pnpm@10.12.1 --activate
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends ca-certificates \
+  && rm -rf /var/lib/apt/lists/* \
+  && corepack enable \
+  && corepack prepare pnpm@10.12.1 --activate
 
 WORKDIR /app
 
