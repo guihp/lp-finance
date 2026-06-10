@@ -1,0 +1,16 @@
+node_modules
+**/node_modules
+**/dist
+**/.tsbuildinfo
+.git
+.github
+.cursor
+.agents
+attached_assets
+scripts/src
+replit.md
+*.md
+.DS_Store
+**/.DS_Store
+.env
+.env.*

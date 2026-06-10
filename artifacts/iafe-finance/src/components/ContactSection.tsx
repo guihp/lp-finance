@@ -1,6 +1,79 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const WEBHOOK_URL = "https://n8n-sgo8ksokg404ocg8sgc4sooc.vemprajogo.com/webhook/envia_finance";
+const WHATSAPP_NUMBER = "5519991679072";
+const WEBHOOK_URL =
+  "https://n8n-sgo8ksokg404ocg8sgc4sooc.vemprajogo.com/webhook/Leads-LP-finance";
+const DEBOUNCE_MS = 900;
+
+type LeadEvent = "preenchimento_parcial" | "envio_formulario";
+
+type LeadPayload = {
+  evento: LeadEvent;
+  sessao_id: string;
+  origem: string;
+  timestamp: string;
+  pagina: string;
+  lead: {
+    nome: string;
+    whatsapp: string;
+    mensagem: string;
+  };
+  campos_preenchidos: {
+    nome: boolean;
+    whatsapp: boolean;
+    mensagem: boolean;
+  };
+  completo: boolean;
+};
+
+function createSessionId() {
+  if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
+    return crypto.randomUUID();
+  }
+  return `lead-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
+}
+
+function buildPayload(
+  name: string,
+  phone: string,
+  message: string,
+  evento: LeadEvent,
+  sessionId: string,
+): LeadPayload {
+  const nome = name.trim();
+  const whatsapp = phone.trim();
+  const mensagem = message.trim();
+
+  return {
+    evento,
+    sessao_id: sessionId,
+    origem: "LP IAFÉ Finance",
+    timestamp: new Date().toISOString(),
+    pagina: typeof window !== "undefined" ? window.location.href : "",
+    lead: { nome, whatsapp, mensagem },
+    campos_preenchidos: {
+      nome: nome.length > 0,
+      whatsapp: whatsapp.length > 0,
+      mensagem: mensagem.length > 0,
+    },
+    completo: nome.length > 0 && whatsapp.length > 0,
+  };
+}
+
+function buildWhatsAppText(nome: string, whatsapp: string, mensagem: string) {
+  const parts = [`Olá! Me chamo ${nome}.`, `Meu WhatsApp: ${whatsapp}.`];
+  if (mensagem) parts.push(mensagem);
+  return parts.join("\n");
+}
+
+async function sendLead(payload: LeadPayload, options?: { keepalive?: boolean }) {
+  await fetch(WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+    keepalive: options?.keepalive,
+  });
+}
 
 export default function ContactSection() {
   const [name, setName] = useState("");
@@ -10,31 +83,70 @@ export default function ContactSection() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  const sessionIdRef = useRef(createSessionId());
+  const lastPartialKeyRef = useRef("");
+
+  useEffect(() => {
+    const nome = name.trim();
+    const whatsapp = phone.trim();
+    const mensagem = message.trim();
+
+    if (!nome && !whatsapp && !mensagem) return;
+
+    const timer = window.setTimeout(() => {
+      const payload = buildPayload(name, phone, message, "preenchimento_parcial", sessionIdRef.current);
+      const partialKey = JSON.stringify(payload.lead);
+
+      if (partialKey === lastPartialKeyRef.current) return;
+      lastPartialKeyRef.current = partialKey;
+
+      sendLead(payload).catch(() => {});
+    }, DEBOUNCE_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [name, phone, message]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!name.trim() || !phone.trim()) {
+    const nome = name.trim();
+    const whatsapp = phone.trim();
+    const mensagem = message.trim();
+
+    if (!nome || !whatsapp) {
       setError("Nome e WhatsApp são obrigatórios.");
       return;
     }
 
     setLoading(true);
+
+    const payload = buildPayload(name, phone, message, "envio_formulario", sessionIdRef.current);
+
     try {
-      await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nome: name.trim(), whatsapp: phone.trim(), mensagem: message.trim() }),
-      });
+      await sendLead(payload);
     } catch {
+      setError("Não foi possível registrar seu contato. Tente novamente.");
+      setLoading(false);
+      return;
     }
+
+    const waText = buildWhatsAppText(nome, whatsapp, mensagem);
+    window.open(
+      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waText)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
 
     setLoading(false);
     setSent(true);
     setName("");
     setPhone("");
     setMessage("");
-    setTimeout(() => setSent(false), 4000);
+    lastPartialKeyRef.current = "";
+    sessionIdRef.current = createSessionId();
+
+    window.setTimeout(() => setSent(false), 4000);
   };
 
   return (
@@ -70,9 +182,7 @@ export default function ContactSection() {
             </div>
 
             <div className="p-8 md:p-10 flex flex-col justify-center">
-              <h2 className="text-3xl font-black text-white mb-2">
-                Fale com a gente
-              </h2>
+              <h2 className="text-3xl font-black text-white mb-2">Fale com a gente</h2>
               <p className="text-white/80 text-sm mb-7 leading-relaxed">
                 Comunique-se pelo WhatsApp para dúvidas ou atendimento personalizado.
               </p>
@@ -86,7 +196,7 @@ export default function ContactSection() {
                     type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    placeholder="Fêh IA"
+                    placeholder="Seu nome"
                     required
                     className="w-full bg-white/95 text-gray-800 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/50 placeholder-gray-400"
                     data-testid="contact-name"
@@ -111,7 +221,7 @@ export default function ContactSection() {
                   <textarea
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Your message..."
+                    placeholder="Como podemos te ajudar?"
                     rows={4}
                     className="w-full bg-white/95 text-gray-800 rounded-lg px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-white/50 placeholder-gray-400 resize-none"
                     data-testid="contact-message"
@@ -128,7 +238,7 @@ export default function ContactSection() {
                   className="w-full bg-purple-900 hover:bg-purple-950 disabled:opacity-70 text-white font-bold py-3.5 rounded-lg text-sm transition-colors"
                   data-testid="contact-submit"
                 >
-                  {sent ? "✓ Enviado!" : loading ? "Enviando..." : "Obrigado!"}
+                  {sent ? "✓ Enviado!" : loading ? "Enviando..." : "Enviar"}
                 </button>
               </form>
             </div>
