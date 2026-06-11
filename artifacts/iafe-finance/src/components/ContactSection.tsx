@@ -156,28 +156,13 @@ export default function ContactSection() {
           className="rounded-3xl overflow-hidden shadow-2xl"
           style={{ background: "linear-gradient(135deg, #7B2FBE 0%, #9333EA 50%, #6D28D9 100%)" }}
         >
-          <div className="grid md:grid-cols-2 gap-0">
-            <div
-              style={{
-                position: "relative",
-                alignSelf: "stretch",
-                overflow: "hidden",
-                minWidth: 0,
-              }}
-            >
+          <div className="grid md:grid-cols-2 items-stretch gap-0">
+            <div className="relative min-h-[260px] overflow-hidden pt-8 md:min-h-0 md:pt-10">
               <img
                 src="/feh-agente2.png"
                 alt="FÊH assistente"
-                style={{
-                  position: "absolute",
-                  bottom: 24,
-                  left: "50%",
-                  height: "calc(100% - 56px)",
-                  width: "auto",
-                  maxWidth: "95%",
-                  filter: "drop-shadow(0 12px 40px rgba(109,40,217,0.5))",
-                  animation: "float-contact 3.5s ease-in-out infinite",
-                }}
+                className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 block h-[94%] w-auto max-w-[92%] object-contain object-bottom"
+                style={{ filter: "drop-shadow(0 12px 40px rgba(109,40,217,0.5))" }}
               />
             </div>
 
